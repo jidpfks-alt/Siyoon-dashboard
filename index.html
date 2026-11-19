@@ -93,6 +93,7 @@ h1,h2,h3,p{margin:0;}
 @keyframes pulse{0%,100%{opacity:1;} 50%{opacity:.45;}}
 
 .icon-btn{
+  position:relative;
   width:clamp(36px,5.2vh,50px); height:clamp(36px,5.2vh,50px);
   display:grid; place-items:center;
   border-radius:16px; border:2px solid #fff;
@@ -371,6 +372,98 @@ h1,h2,h3,p{margin:0;}
 .master-count.live{background:#ffd23f; border-color:#f2b705; animation:glow 1.6s ease-in-out infinite;}
 @keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(255,180,20,.5);}50%{box-shadow:0 0 0 8px rgba(255,180,20,0);}}
 
+/* ============ 특별 일정 D-Day ============ */
+.panel.dday{
+  flex:0 0 auto;
+  background:linear-gradient(135deg,#fff2fb 0%,#f2eaff 55%,#e8f1ff 100%);
+}
+.dday-hero{display:flex; align-items:center; gap:clamp(8px,1vw,14px);}
+.dday-badge{
+  flex:0 0 auto; white-space:nowrap; text-align:center;
+  padding:clamp(6px,1vh,10px) clamp(8px,1vw,12px);
+  border-radius:16px;
+  background:linear-gradient(160deg,#ff7ab6,#ff5b5b); color:#fff;
+  box-shadow:0 4px 12px rgba(255,91,91,.30);
+  font-size:clamp(13px,2.2vh,22px); font-weight:900; letter-spacing:-.5px; line-height:1.05;
+  font-variant-numeric:tabular-nums;
+}
+.dday-badge.today{background:linear-gradient(160deg,#ffd23f,#ff9f1a); color:#6b4200; animation:glow 1.6s ease-in-out infinite;}
+.dday-main{min-width:0; flex:1 1 auto;}
+.dday-title{
+  font-size:clamp(12px,1.95vh,19px); font-weight:900; letter-spacing:-.4px; line-height:1.2;
+  word-break:keep-all; display:flex; align-items:center; gap:6px; flex-wrap:wrap;
+}
+.dday-date{font-size:clamp(9px,1.3vh,12.5px); font-weight:800; color:#8b7fb0; margin-top:2px;}
+.dday-next{display:flex; flex-wrap:wrap; gap:clamp(4px,.6vw,7px); margin-top:clamp(5px,.8vh,9px);}
+.dday-chip{
+  display:inline-flex; align-items:center; gap:5px; max-width:100%;
+  padding:3px 9px; border-radius:999px; background:#fff; border:2px solid #e7dcf7;
+  font-size:clamp(9px,1.25vh,12px); font-weight:800; color:#6b5f86;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.dday-chip b{color:#d6417c; font-weight:900;}
+.dday-empty{font-size:clamp(9px,1.3vh,12.5px); font-weight:800; color:#9a8fb0; line-height:1.4; word-break:keep-all;}
+
+/* ============ 보상 쿠폰함 ============ */
+.icon-badge{
+  position:absolute; top:-5px; right:-5px; min-width:20px; height:20px; padding:0 5px;
+  border-radius:999px; background:var(--red); color:#fff;
+  font-size:12px; font-weight:900; line-height:1; display:grid; place-items:center;
+  border:2px solid #fff; box-shadow:0 2px 6px rgba(255,91,91,.45);
+}
+.coupon-intro{
+  display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;
+  background:linear-gradient(120deg,#fff8dd,#ffeec4); border:2px dashed #f0c169;
+  border-radius:16px; padding:10px 14px; margin-bottom:14px;
+}
+.coupon-intro b{font-size:clamp(13px,1.9vh,17px); font-weight:900; color:#8a5c00;}
+.coupon-intro span{font-size:clamp(10px,1.4vh,13px); font-weight:800; color:#a1710a;}
+.coupon-list{display:flex; flex-direction:column; gap:10px;}
+.coupon{
+  display:flex; align-items:center; gap:12px;
+  border-radius:18px; padding:12px 14px; background:#fff; border:3px solid #efe6d2;
+}
+.coupon.locked{background:#faf8f2; border-style:dashed; border-color:#e6dfcf;}
+.coupon.ready{background:linear-gradient(120deg,#fffdf0,#ffe9ae); border-color:var(--yellow); box-shadow:0 4px 14px rgba(240,180,20,.2);}
+.coupon.used{background:#eef8f1; border-color:#b9e6c9;}
+.coupon-info{flex:1 1 auto; min-width:0;}
+.coupon-name{font-size:clamp(12px,1.75vh,16px); font-weight:900; line-height:1.25; word-break:keep-all;}
+.coupon.locked .coupon-name{color:#a9a396;}
+.coupon.used .coupon-name{color:#1c7a48;}
+.coupon-req{font-size:clamp(9px,1.3vh,12px); font-weight:800; color:#9a8f78; margin-top:3px; word-break:keep-all;}
+.coupon.ready .coupon-req{color:#a1710a;}
+.coupon.used .coupon-req{color:#2f9a63;}
+.coupon-emoji{flex:0 0 auto; font-size:clamp(20px,3vh,28px); line-height:1;}
+.coupon-btn{
+  flex:0 0 auto; min-height:44px; border:none; border-radius:14px; padding:10px 16px;
+  background:linear-gradient(160deg,#ff8f6b,#ff5b5b); color:#fff;
+  font-size:clamp(11px,1.5vh,14px); font-weight:900; box-shadow:0 4px 10px rgba(255,91,91,.32);
+  transition:transform .1s;
+}
+.coupon-btn:active{transform:scale(.95);}
+.coupon-stamp{
+  flex:0 0 auto; text-align:center; line-height:1.2; transform:rotate(-7deg);
+  border:3px double #25b96b; color:#1c7a48; border-radius:12px; padding:5px 9px;
+  font-size:clamp(9px,1.25vh,12px); font-weight:900;
+}
+.coupon-undo{
+  flex:0 0 auto; border:none; background:none; padding:4px;
+  font-size:clamp(9px,1.2vh,11px); font-weight:800; color:#a8a294; text-decoration:underline;
+}
+.coupon-empty{font-size:clamp(10px,1.4vh,13px); color:#a99f88; font-weight:700; padding:8px 2px;}
+
+/* 알림 토스트 */
+.toast{
+  position:fixed; left:50%; bottom:26px; z-index:130;
+  transform:translate(-50%,16px); opacity:0; pointer-events:none;
+  max-width:min(92vw,560px); text-align:center;
+  background:#2b2b36; color:#fff; border-radius:999px; padding:12px 22px;
+  font-size:clamp(12px,1.7vh,15px); font-weight:900; word-break:keep-all;
+  box-shadow:0 12px 32px rgba(0,0,0,.32);
+  transition:opacity .25s ease, transform .25s ease;
+}
+.toast.show{opacity:1; transform:translate(-50%,0);}
+
 /* ============ 설정 모달 ============ */
 .modal{
   position:fixed; inset:0; z-index:90;
@@ -442,6 +535,22 @@ h1,h2,h3,p{margin:0;}
   border:2px solid #eadfc6; border-radius:12px; padding:10px 6px; background:#fff; color:var(--ink);
   max-width:110px;
 }
+.ed-row input[type="date"],
+.ed-row input[type="number"]{
+  flex:0 0 auto; font-family:inherit; font-size:clamp(11px,1.5vh,14px); font-weight:800;
+  border:2px solid #eadfc6; border-radius:12px; padding:9px 8px; background:#fff; color:var(--ink);
+}
+.ed-row input[type="date"]{max-width:148px;}
+.ed-row input[type="number"]{width:76px; max-width:76px; text-align:center;}
+.ed-row input.ed-emoji{
+  flex:0 0 auto; width:58px; max-width:58px; text-align:center;
+  font-family:inherit; font-size:clamp(13px,1.7vh,16px); font-weight:800;
+  border:2px solid #eadfc6; border-radius:12px; padding:9px 4px; background:#fff; color:var(--ink);
+}
+.ed-row .ed-tag{
+  flex:0 0 auto; font-size:clamp(9px,1.2vh,11px); font-weight:900; color:#9a8fb0;
+  background:#f1ecf9; border-radius:999px; padding:3px 8px; white-space:nowrap;
+}
 .ed-del{
   flex:0 0 auto; width:40px; height:40px; border-radius:12px;
   border:2px solid #ffd3c6; background:#fff2ee; color:#b4442a;
@@ -511,10 +620,11 @@ h1,h2,h3,p{margin:0;}
   .grid{grid-template-columns:1fr; }
   .col{display:contents;}
   .panel.routines{order:1;}
-  .panel.affirm{order:2;}
-  .panel.prep{order:3;}
-  .panel.weather{order:4;}
-  .panel.master{order:5;}
+  .panel.dday{order:2;}
+  .panel.affirm{order:3;}
+  .panel.prep{order:4;}
+  .panel.weather{order:5;}
+  .panel.master{order:6;}
   .routine-grid{grid-template-columns:1fr 1fr; grid-auto-rows:auto;}
   .routine{padding:14px 6px; gap:4px;}
   .routine .stamp{width:clamp(48px,13vw,72px); height:clamp(48px,13vw,72px);}
@@ -531,6 +641,7 @@ h1,h2,h3,p{margin:0;}
   .panel.master .master-sub{display:none;}
   .wx-note{display:none;}
   .outfit-extra{display:none;}
+  .dday-next{display:none;}
 }
 </style>
 </head>
@@ -556,6 +667,7 @@ h1,h2,h3,p{margin:0;}
       <div class="wake-badge" id="wakeBadge" data-state="off" role="button" tabindex="0" title="화면 꺼짐 방지 상태 · 눌러서 다시 켜기">
         <span class="dot"></span><span id="wakeText">화면 꺼짐 방지</span>
       </div>
+      <button class="icon-btn" id="couponBtn" aria-label="보상 쿠폰함" title="보상 쿠폰함">🎁<span class="icon-badge hidden" id="couponBadge">0</span></button>
       <button class="icon-btn" id="fsBtn" aria-label="전체화면" title="전체화면">⛶</button>
       <button class="icon-btn" id="settingsBtn" aria-label="설정" title="설정">⚙️</button>
     </div>
@@ -593,6 +705,16 @@ h1,h2,h3,p{margin:0;}
     </section>
 
     <div class="col">
+      <!-- 특별 일정 D-Day -->
+      <section class="panel dday" id="ddayPanel" aria-label="우리 집 특별 일정">
+        <div class="panel-head">
+          <h2>📅 우리 집 특별 일정</h2>
+          <span class="spacer"></span>
+          <span class="pill" id="ddayPill">D-Day</span>
+        </div>
+        <div id="ddayBody"></div>
+      </section>
+
       <!-- 확언 -->
       <section class="panel affirm" id="affirmCard" role="button" tabindex="0" aria-label="오늘의 다짐, 눌러서 다른 문구 보기">
         <div class="panel-head">
@@ -702,6 +824,21 @@ h1,h2,h3,p{margin:0;}
       </section>
 
       <section class="set-sec">
+        <h3>🎪 우리 집 특별 일정 (D-Day)</h3>
+        <p class="set-hint">오늘을 기준으로 D-Day를 세어 가장 가까운 일정을 대시보드에 크게 보여 줘요. 지나간 일정은 화면에서 자동으로 숨겨지고 여기서는 "지나감"으로 표시돼요.</p>
+        <div class="editor" id="eventEditor"></div>
+        <button class="btn block" id="addEvent">+ 일정 추가</button>
+      </section>
+
+      <section class="set-sec">
+        <h3>🎁 보상 쿠폰함</h3>
+        <p class="set-hint">누적 도장이 목표에 닿으면 쿠폰이 열려요. 이름 앞에 이모지를 넣으면 쿠폰함에 그대로 보여요. (예: 🍦 맛있는 간식 고르기권)</p>
+        <div class="editor" id="couponEditor"></div>
+        <button class="btn block" id="addCoupon">+ 쿠폰 추가</button>
+        <button class="btn block warn" id="resetCoupons">쿠폰함 처음으로 (사용 기록 지우기)</button>
+      </section>
+
+      <section class="set-sec">
         <h3>🧹 데이터</h3>
         <button class="btn block warn" id="resetToday">오늘 체크만 지우기</button>
         <button class="btn block warn" id="resetAll">모든 설정·기록 처음으로</button>
@@ -726,6 +863,23 @@ h1,h2,h3,p{margin:0;}
     </div>
   </div>
 </div>
+
+<!-- 보상 쿠폰함 -->
+<div class="modal" id="coupons">
+  <div class="sheet" role="dialog" aria-modal="true" aria-label="보상 쿠폰함">
+    <div class="sheet-head">
+      <h2>🎁 보상 쿠폰함</h2>
+      <button class="icon-btn" id="closeCoupons" aria-label="닫기">✕</button>
+    </div>
+    <div class="sheet-body">
+      <div class="coupon-intro" id="couponIntro"></div>
+      <div class="coupon-list" id="couponList"></div>
+      <p class="set-hint" style="margin-top:14px;">도장을 모으면 쿠폰이 열려요. 쓴 쿠폰은 "되돌리기"로 되돌릴 수 있고, 쿠폰 종류와 목표 도장 수는 ⚙️ 설정에서 바꿀 수 있어요.</p>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <!-- 축하 -->
 <div class="celebrate" id="celebrate">
@@ -771,6 +925,19 @@ h1,h2,h3,p{margin:0;}
     ['유치원 활동 준비물', '태권도 도복'],                                    /* 목 */
     ['유치원 이불·낮잠패드 챙겨오기'],                                        /* 금 */
     ['나들이 가방 챙기기', '물통 챙기기']                                     /* 토 */
+  ];
+
+  /* 우리 집 특별 일정 (D-Day) 기본값 — 개인정보 없음 */
+  var DEFAULT_EVENTS = [
+    { date: '2026-11-21', emoji: '🎡', title: '에버랜드 가는 날' },
+    { date: '2026-11-22', emoji: '🛡️', title: '전쟁기념관 & 뮤지컬' }
+  ];
+
+  /* 보상 쿠폰 기본값 (도장 개수 → 쿠폰) */
+  var DEFAULT_COUPONS = [
+    { stamps: 6, name: '🍦 맛있는 간식 고르기권' },
+    { stamps: 18, name: '🎲 엄마·아빠랑 보드게임 한 판권' },
+    { stamps: 30, name: '🎁 포켓몬 스티커/작은 선물권' }
   ];
 
   var AFFIRMATIONS = [
@@ -956,6 +1123,12 @@ h1,h2,h3,p{margin:0;}
         return { id: 'r' + i, name: r.name, poke: r.poke };
       }),
       prep: DEFAULT_PREP.map(function (a) { return a.slice(); }),
+      events: DEFAULT_EVENTS.map(function (e, i) {
+        return { id: 'e' + i, date: e.date, emoji: e.emoji, title: e.title };
+      }),
+      coupons: DEFAULT_COUPONS.map(function (c, i) {
+        return { id: 'c' + i, stamps: c.stamps, name: c.name, used: false, usedAt: '' };
+      }),
       today: { date: dateKey(), done: {}, prep: {}, celebrated: false },
       totalStamps: 0,
       masterDays: 0
@@ -994,6 +1167,36 @@ h1,h2,h3,p{margin:0;}
         return day.filter(function (t) { return typeof t === 'string'; }).map(function (t) { return t.slice(0, 40); });
       });
     }
+    if (Array.isArray(saved.events)) {
+      var evs = [];
+      saved.events.forEach(function (e, i) {
+        if (!e || typeof e.date !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(e.date)) return;
+        if (typeof e.title !== 'string' || !e.title.trim()) return;
+        evs.push({
+          id: typeof e.id === 'string' && e.id ? e.id : 'e' + i + '_' + Date.now(),
+          date: e.date,
+          emoji: (typeof e.emoji === 'string' && e.emoji.slice(0, 8)) || '🎉',
+          title: e.title.slice(0, 40)
+        });
+      });
+      s.events = evs;
+    }
+    if (Array.isArray(saved.coupons)) {
+      var cps = [];
+      saved.coupons.forEach(function (c, i) {
+        if (!c || typeof c.name !== 'string' || !c.name.trim()) return;
+        var goal = parseInt(c.stamps, 10);
+        if (!(goal > 0)) return;
+        cps.push({
+          id: typeof c.id === 'string' && c.id ? c.id : 'c' + i + '_' + Date.now(),
+          stamps: Math.min(9999, goal),
+          name: c.name.slice(0, 40),
+          used: !!c.used,
+          usedAt: typeof c.usedAt === 'string' ? c.usedAt : ''
+        });
+      });
+      s.coupons = cps;
+    }
     if (saved.today && typeof saved.today === 'object') {
       s.today = {
         date: typeof saved.today.date === 'string' ? saved.today.date : dateKey(),
@@ -1030,6 +1233,7 @@ h1,h2,h3,p{margin:0;}
       save();
       renderRoutines();
       renderPrep();
+      renderDday(true);
       return true;
     }
     return false;
@@ -1152,6 +1356,17 @@ h1,h2,h3,p{margin:0;}
     save();
     updateProgress();
     maybeCelebrate();
+
+    /* 방금 넘긴 목표 도장이 있으면 새 쿠폰 알림 */
+    if (!was) {
+      var fresh = null;
+      state.coupons.forEach(function (c) {
+        if (c.stamps === state.totalStamps && !c.used) fresh = c;
+      });
+      if (fresh) {
+        window.setTimeout(function () { toast('🎁 새 쿠폰이 열렸어요! 쿠폰함을 열어 봐요'); }, 750);
+      }
+    }
   }
 
   function doneCount() {
@@ -1183,6 +1398,7 @@ h1,h2,h3,p{margin:0;}
     } else {
       ms.textContent = '루틴을 다 하면 마스터 배지를 받아요!';
     }
+    updateCouponBadge();
   }
 
   var celebrating = false;
@@ -1265,6 +1481,277 @@ h1,h2,h3,p{margin:0;}
       confettiLayer.appendChild(s);
     }
     window.setTimeout(function () { confettiLayer.innerHTML = ''; }, 4200);
+  }
+
+  /* ================= 렌더: 특별 일정 D-Day ================= */
+  var ddayBody = $('#ddayBody');
+  var ddayPill = $('#ddayPill');
+  var ddaySig = '';
+
+  /* 'YYYY-MM-DD' → 그 날 자정의 Date (없으면 null) */
+  function dateParts(ds) {
+    var p = String(ds).split('-');
+    if (p.length !== 3) return null;
+    var y = parseInt(p[0], 10), m = parseInt(p[1], 10), d = parseInt(p[2], 10);
+    if (!y || !m || !d) return null;
+    var dt = new Date(y, m - 1, d);
+    if (dt.getFullYear() !== y || dt.getMonth() !== m - 1 || dt.getDate() !== d) return null;
+    return dt;
+  }
+
+  /* 오늘(자정)부터 그 날까지 남은 날수: 오늘 0, 내일 1, 어제 -1 */
+  function daysUntil(ds) {
+    var target = dateParts(ds);
+    if (!target) return null;
+    var now = new Date();
+    var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    return Math.round((target.getTime() - today.getTime()) / 86400000);
+  }
+
+  function ddayText(n) {
+    if (n === 0) return 'D-Day! 🎉';
+    return 'D-' + n;
+  }
+
+  function ddaySub(n) {
+    if (n === 0) return '바로 오늘이에요!';
+    if (n === 1) return '내일이에요!';
+    return n + '일 남았어요';
+  }
+
+  function fmtEventDate(d) {
+    return (d.getMonth() + 1) + '월 ' + d.getDate() + '일 (' + DAY_NAMES[d.getDay()] + ')';
+  }
+
+  /* 다가오는 일정만, 가까운 순서로 */
+  function ddayList() {
+    var out = [];
+    state.events.forEach(function (ev) {
+      var n = daysUntil(ev.date);
+      if (n === null || n < 0) return;
+      out.push({ ev: ev, days: n, when: dateParts(ev.date) });
+    });
+    out.sort(function (a, b) {
+      if (a.days !== b.days) return a.days - b.days;
+      if (a.ev.date !== b.ev.date) return a.ev.date < b.ev.date ? -1 : 1;
+      return 0;
+    });
+    return out;
+  }
+
+  function renderDday(force) {
+    var list = ddayList();
+    var sig = dateKey() + '|' + state.events.length + '|' + list.map(function (x) {
+      return x.ev.id + '~' + x.ev.date + '~' + x.ev.emoji + '~' + x.ev.title + '~' + x.days;
+    }).join('|');
+    if (!force && sig === ddaySig) return;
+    ddaySig = sig;
+
+    if (ddayPill) {
+      ddayPill.textContent = list.length ? list.length + '개' : '—';
+      ddayPill.className = 'pill' + (list.length && list[0].days === 0 ? ' ok' : '');
+    }
+    if (!ddayBody) return;
+
+    if (!list.length) {
+      ddayBody.innerHTML = '<div class="dday-empty">다가오는 특별 일정이 아직 없어요.<br>⚙️ 설정에서 일정을 추가해 보세요.</div>';
+      return;
+    }
+
+    var first = list[0];
+    var html = '<div class="dday-hero">' +
+      '<div class="dday-badge' + (first.days === 0 ? ' today' : '') + '">' + ddayText(first.days) + '</div>' +
+      '<div class="dday-main">' +
+        '<div class="dday-title"><span>' + esc(first.ev.emoji) + '</span><span>' + esc(first.ev.title) + '</span></div>' +
+        '<div class="dday-date">' + fmtEventDate(first.when) + ' · ' + ddaySub(first.days) + '</div>' +
+      '</div>' +
+    '</div>';
+
+    if (list.length > 1) {
+      html += '<div class="dday-next">';
+      list.slice(1, 4).forEach(function (x) {
+        html += '<span class="dday-chip"><b>' + ddayText(x.days) + '</b>' +
+          esc(x.ev.emoji) + ' ' + esc(x.ev.title) + '</span>';
+      });
+      html += '</div>';
+    }
+    ddayBody.innerHTML = html;
+  }
+
+  /* ================= 보상 쿠폰함 ================= */
+  var couponModal = $('#coupons');
+  var couponListBox = $('#couponList');
+  var couponOpen = false;
+  var toastTimer = 0;
+
+  function toast(msg) {
+    var el = $('#toast');
+    if (!el) return;
+    el.textContent = msg;
+    el.classList.add('show');
+    if (toastTimer) window.clearTimeout(toastTimer);
+    toastTimer = window.setTimeout(function () { el.classList.remove('show'); }, 3200);
+  }
+
+  function findCoupon(id) {
+    for (var i = 0; i < state.coupons.length; i++) {
+      if (state.coupons[i].id === id) return state.coupons[i];
+    }
+    return null;
+  }
+
+  function couponUnlocked(c) { return state.totalStamps >= c.stamps; }
+
+  /* 쓸 수 있는(=열렸고 아직 안 쓴) 쿠폰 수 — 헤더 배지 */
+  function couponReadyCount() {
+    var n = 0;
+    state.coupons.forEach(function (c) { if (couponUnlocked(c) && !c.used) n += 1; });
+    return n;
+  }
+
+  function updateCouponBadge() {
+    var badge = $('#couponBadge');
+    var btn = $('#couponBtn');
+    if (!badge) return;
+    var n = couponReadyCount();
+    if (n > 0) {
+      badge.textContent = n > 9 ? '9+' : String(n);
+      badge.classList.remove('hidden');
+      if (btn) btn.setAttribute('aria-label', '보상 쿠폰함 · 쓸 수 있는 쿠폰 ' + n + '개');
+    } else {
+      badge.textContent = '0';
+      badge.classList.add('hidden');
+      if (btn) btn.setAttribute('aria-label', '보상 쿠폰함');
+    }
+  }
+
+  function sortedCoupons() {
+    return state.coupons.slice().sort(function (a, b) { return a.stamps - b.stamps; });
+  }
+
+  function renderCoupons() {
+    if (!couponListBox) return;
+    couponListBox.innerHTML = '';
+
+    var stamps = state.totalStamps;
+    var next = null;
+    sortedCoupons().forEach(function (c) {
+      if (!couponUnlocked(c) && (!next || c.stamps < next.stamps)) next = c;
+    });
+    var intro = $('#couponIntro');
+    if (intro) {
+      intro.innerHTML = '<b>누적 도장 ' + stamps + '개</b>' +
+        (next
+          ? '<span>다음 쿠폰까지 ' + (next.stamps - stamps) + '개 남았어요!</span>'
+          : '<span>쿠폰을 모두 열었어요. 정말 대단해! 🎉</span>');
+    }
+
+    if (!state.coupons.length) {
+      var empty = document.createElement('div');
+      empty.className = 'coupon-empty';
+      empty.textContent = '쿠폰이 아직 없어요. ⚙️ 설정에서 쿠폰을 추가할 수 있어요.';
+      couponListBox.appendChild(empty);
+      return;
+    }
+
+    sortedCoupons().forEach(function (c) {
+      var on = couponUnlocked(c);
+      var card = document.createElement('div');
+      card.className = 'coupon ' + (c.used ? 'used' : (on ? 'ready' : 'locked'));
+      card.dataset.id = c.id;
+
+      var info = document.createElement('div');
+      info.className = 'coupon-info';
+      info.innerHTML = '<div class="coupon-name">' + esc(c.name) + '</div>' +
+        '<div class="coupon-req">' + (c.used
+          ? '사용 완료! 다음에도 또 모아 보자'
+          : (on
+            ? '도장 ' + c.stamps + '개 달성! 지금 쓸 수 있어요'
+            : '도장 ' + c.stamps + '개 필요 · ' + (c.stamps - stamps) + '개 더 모으면 열려요')) +
+        '</div>';
+      card.appendChild(info);
+
+      if (c.used) {
+        var stamp = document.createElement('div');
+        stamp.className = 'coupon-stamp';
+        stamp.innerHTML = '사용 완료<br>' + esc(c.usedAt || '');
+        card.appendChild(stamp);
+
+        var undo = document.createElement('button');
+        undo.type = 'button';
+        undo.className = 'coupon-undo';
+        undo.textContent = '되돌리기';
+        undo.dataset.undo = c.id;
+        card.appendChild(undo);
+      } else if (on) {
+        var use = document.createElement('button');
+        use.type = 'button';
+        use.className = 'coupon-btn';
+        use.textContent = '사용하기 🎉';
+        use.dataset.use = c.id;
+        card.appendChild(use);
+      } else {
+        var lock = document.createElement('div');
+        lock.className = 'coupon-emoji';
+        lock.textContent = '🔒';
+        card.appendChild(lock);
+      }
+      couponListBox.appendChild(card);
+    });
+  }
+
+  function useCoupon(id) {
+    var c = findCoupon(id);
+    if (!c || c.used || !couponUnlocked(c)) return;
+    c.used = true;
+    var d = new Date();
+    c.usedAt = (d.getMonth() + 1) + '/' + d.getDate();
+    save();
+    Sound.ensure();
+    Sound.fanfare();
+    confetti();
+    renderCoupons();
+    updateCouponBadge();
+    toast('🎉 ' + c.name + ' — 사용 완료!');
+  }
+
+  function undoCoupon(id) {
+    var c = findCoupon(id);
+    if (!c || !c.used) return;
+    c.used = false;
+    c.usedAt = '';
+    save();
+    Sound.tick();
+    renderCoupons();
+    updateCouponBadge();
+  }
+
+  function openCoupons() {
+    renderCoupons();
+    couponModal.classList.add('open');
+    couponOpen = true;
+  }
+
+  function closeCoupons() {
+    couponModal.classList.remove('open');
+    couponOpen = false;
+  }
+
+  $('#couponBtn').addEventListener('click', openCoupons);
+  $('#closeCoupons').addEventListener('click', closeCoupons);
+  couponModal.addEventListener('click', function (e) {
+    if (e.target === couponModal) closeCoupons();
+  });
+  if (couponListBox) {
+    couponListBox.addEventListener('click', function (e) {
+      var el = e.target;
+      while (el && el !== couponListBox && !(el.dataset && (el.dataset.use || el.dataset.undo))) {
+        el = el.parentNode;
+      }
+      if (!el || !el.dataset) return;
+      if (el.dataset.use) useCoupon(el.dataset.use);
+      else if (el.dataset.undo) undoCoupon(el.dataset.undo);
+    });
   }
 
   /* ================= 렌더: 확언 ================= */
@@ -1409,6 +1896,7 @@ h1,h2,h3,p{margin:0;}
     $('#clockSec').textContent = ':' + pad2(now.getSeconds());
     $('#dateText').textContent = (now.getMonth() + 1) + '월 ' + now.getDate() + '일 ' + DAY_FULL[now.getDay()];
     $('#greetText').textContent = greeting(now.getHours());
+    renderDday(false);
 
     var start = atTime(now, state.settings.start);
     var bed = atTime(now, state.settings.bed);
@@ -1983,6 +2471,7 @@ h1,h2,h3,p{margin:0;}
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {
       if ($('#celebrate').classList.contains('open')) closeCelebrate();
+      else if (couponOpen) closeCoupons();
       else if (modalOpen) closeSettings();
     }
   });
@@ -2020,6 +2509,8 @@ h1,h2,h3,p{margin:0;}
     renderRoutineEditor();
     renderPrepEditorChips();
     renderPrepEditor();
+    renderEventEditor();
+    renderCouponEditor();
   }
 
   function renderRoutineEditor() {
@@ -2176,6 +2667,174 @@ h1,h2,h3,p{margin:0;}
     renderPrep();
   });
 
+  /* 특별 일정 편집기 */
+  function renderEventEditor() {
+    var box = $('#eventEditor');
+    box.innerHTML = '';
+    if (!state.events.length) {
+      var e = document.createElement('div');
+      e.className = 'prep-empty';
+      e.textContent = '일정이 하나도 없어요. 아래 버튼으로 추가해 주세요.';
+      box.appendChild(e);
+    }
+    state.events.forEach(function (ev, idx) {
+      var row = document.createElement('div');
+      row.className = 'ed-row';
+
+      var date = document.createElement('input');
+      date.type = 'date';
+      date.value = ev.date;
+      date.setAttribute('aria-label', '일정 날짜');
+      date.addEventListener('change', function () {
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(date.value)) return;
+        ev.date = date.value;
+        save();
+        renderDday(true);
+        renderEventEditor();
+      });
+
+      var em = document.createElement('input');
+      em.type = 'text';
+      em.value = ev.emoji;
+      em.maxLength = 8;
+      em.className = 'ed-emoji';
+      em.setAttribute('aria-label', '일정 이모지');
+      em.addEventListener('input', function () {
+        ev.emoji = em.value.slice(0, 8) || '🎉';
+        save();
+        renderDday(true);
+      });
+
+      var title = document.createElement('input');
+      title.type = 'text';
+      title.value = ev.title;
+      title.maxLength = 40;
+      title.setAttribute('aria-label', '일정 이름');
+      title.addEventListener('input', function () {
+        ev.title = title.value;
+        save();
+        renderDday(true);
+      });
+
+      var del = document.createElement('button');
+      del.type = 'button';
+      del.className = 'ed-del';
+      del.textContent = '✕';
+      del.setAttribute('aria-label', '이 일정 삭제');
+      del.addEventListener('click', function () {
+        state.events.splice(idx, 1);
+        save();
+        renderDday(true);
+        renderEventEditor();
+      });
+
+      row.appendChild(date);
+      row.appendChild(em);
+      row.appendChild(title);
+
+      var days = daysUntil(ev.date);
+      if (days !== null && days < 0) {
+        var tag = document.createElement('span');
+        tag.className = 'ed-tag';
+        tag.textContent = '지나감';
+        row.appendChild(tag);
+      }
+      row.appendChild(del);
+      box.appendChild(row);
+    });
+  }
+
+  $('#addEvent').addEventListener('click', function () {
+    var d = new Date();
+    d.setDate(d.getDate() + 7);
+    state.events.push({ id: 'e' + Date.now(), date: dateKey(d), emoji: '🎉', title: '새 일정' });
+    save();
+    renderEventEditor();
+    renderDday(true);
+  });
+
+  /* 보상 쿠폰 편집기 */
+  function renderCouponEditor() {
+    var box = $('#couponEditor');
+    box.innerHTML = '';
+    if (!state.coupons.length) {
+      var e = document.createElement('div');
+      e.className = 'prep-empty';
+      e.textContent = '쿠폰이 하나도 없어요. 아래 버튼으로 추가해 주세요.';
+      box.appendChild(e);
+    }
+    state.coupons.forEach(function (c, idx) {
+      var row = document.createElement('div');
+      row.className = 'ed-row';
+
+      var num = document.createElement('input');
+      num.type = 'number';
+      num.min = '1';
+      num.max = '9999';
+      num.step = '1';
+      num.value = String(c.stamps);
+      num.setAttribute('aria-label', '쿠폰 목표 도장 수');
+      num.addEventListener('input', function () {
+        var v = parseInt(num.value, 10);
+        if (!(v > 0)) return;
+        c.stamps = Math.min(9999, v);
+        save();
+        updateCouponBadge();
+        if (couponOpen) renderCoupons();
+      });
+
+      var name = document.createElement('input');
+      name.type = 'text';
+      name.value = c.name;
+      name.maxLength = 40;
+      name.setAttribute('aria-label', '쿠폰 이름');
+      name.addEventListener('input', function () {
+        c.name = name.value;
+        save();
+        if (couponOpen) renderCoupons();
+      });
+
+      var del = document.createElement('button');
+      del.type = 'button';
+      del.className = 'ed-del';
+      del.textContent = '✕';
+      del.setAttribute('aria-label', '이 쿠폰 삭제');
+      del.addEventListener('click', function () {
+        state.coupons.splice(idx, 1);
+        save();
+        renderCouponEditor();
+        updateCouponBadge();
+        if (couponOpen) renderCoupons();
+      });
+
+      row.appendChild(num);
+      row.appendChild(name);
+      row.appendChild(del);
+      box.appendChild(row);
+    });
+  }
+
+  $('#addCoupon').addEventListener('click', function () {
+    var top = 0;
+    state.coupons.forEach(function (c) { if (c.stamps > top) top = c.stamps; });
+    state.coupons.push({ id: 'c' + Date.now(), stamps: top + 10, name: '🎁 새 쿠폰', used: false, usedAt: '' });
+    save();
+    renderCouponEditor();
+    updateCouponBadge();
+    if (couponOpen) renderCoupons();
+  });
+
+  $('#resetCoupons').addEventListener('click', function () {
+    if (!window.confirm('쿠폰함을 처음 상태로 되돌릴까요? (쿠폰 3종, 사용 기록 지움)')) return;
+    state.coupons = DEFAULT_COUPONS.map(function (c, i) {
+      return { id: 'c' + i, stamps: c.stamps, name: c.name, used: false, usedAt: '' };
+    });
+    save();
+    renderCouponEditor();
+    updateCouponBadge();
+    if (couponOpen) renderCoupons();
+  });
+
   /* 데이터 초기화 */
   $('#resetToday').addEventListener('click', function () {
     if (!window.confirm('오늘 체크한 도장과 준비물만 지울까요? (누적 도장은 그대로예요)')) return;
@@ -2199,6 +2858,8 @@ h1,h2,h3,p{margin:0;}
     renderDayChips();
     renderPrep();
     renderEditors();
+    renderDday(true);
+    updateCouponBadge();
     $('#startInput').value = state.settings.start;
     $('#bedInput').value = state.settings.bed;
     $('#soundToggle').checked = state.settings.sound;
@@ -2216,6 +2877,8 @@ h1,h2,h3,p{margin:0;}
     renderAffirm(false);
     renderDayChips();
     renderPrep();
+    renderDday(true);
+    updateCouponBadge();
     tick();
     loadWeather();
     window.setInterval(loadWeather, 30 * 60 * 1000);
