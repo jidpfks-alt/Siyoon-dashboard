@@ -2295,9 +2295,7 @@ h1,h2,h3,p{margin:0;}
       b.innerHTML = '<div class="dex-card-art">' + poke(c.key) + '</div>' +
         '<div class="dex-card-no">No.' + pad3(c.no) + '</div>' +
         '<div class="dex-card-name">' + (has ? esc(c.name) : '???') + '</div>' +
-        (has
-          ? '<span class="type-badge" style="background:' + t.c2 + '">' + t.name + '</span>'
-          : '<div class="dex-card-lock">?</div>');
+        (has ? '<span class="type-badge" style="background:' + t.c2 + '">' + t.name + '</span>' : '');
       grid.appendChild(b);
     });
     if (highlightKey && state.cards.owned[highlightKey]) {
