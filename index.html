@@ -441,7 +441,8 @@ h1,h2,h3,p{margin:0;}
 .dex-card-no{font-size:clamp(8px,1.15vh,10.5px); font-weight:900; color:#a89a7c; letter-spacing:.6px;}
 .dex-card-name{font-size:clamp(11px,1.5vh,14px); font-weight:900; color:#3b3320; white-space:nowrap; letter-spacing:-.3px;}
 .dex-card.locked .dex-card-name{color:#b3ac9c;}
-.dex-card-lock{font-size:clamp(9px,1.2vh,12px); color:#c4bcaa;}
+.dex-card-lock{width:22px; height:22px; border-radius:50%; background:#efeade; color:#b3ac9c; font-size:13px; font-weight:900; display:grid; place-items:center; line-height:1;}
+.dex-detail > .btn{align-self:flex-start;}
 .type-badge{
   display:inline-block; font-size:clamp(8px,1.1vh,11px); font-weight:900;
   padding:2px 9px; border-radius:999px; color:#fff; letter-spacing:.3px;
@@ -2296,7 +2297,7 @@ h1,h2,h3,p{margin:0;}
         '<div class="dex-card-name">' + (has ? esc(c.name) : '???') + '</div>' +
         (has
           ? '<span class="type-badge" style="background:' + t.c2 + '">' + t.name + '</span>'
-          : '<div class="dex-card-lock">🔒</div>');
+          : '<div class="dex-card-lock">?</div>');
       grid.appendChild(b);
     });
     if (highlightKey && state.cards.owned[highlightKey]) {
